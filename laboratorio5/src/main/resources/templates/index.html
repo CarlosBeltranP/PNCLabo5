@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registro</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<h1>Registrar estudiante</h1>
+		<div class="form-container">
+			<form th:action="@{/guardar}" th:object="${estudiante}" method="post">
+	
+		    	<label>Nombre:</label><br>
+			    <input type="text" th:field="*{nombre}" placeholder=" "><br> 
+			    <span th:errors="*{nombre}" style="color: #E81505"></span><br><br>
+		
+			    <label>Apellido:</label><br>
+			    <input type="text" th:field="*{apellido}" placeholder=" "> <br>
+			    <span th:errors="*{apellido}" style="color: #E81505"></span><br><br>
+		
+			    <label>Carnet:</label><br>
+			    <input type="number" th:field="*{carnet}" placeholder=" "><br> 
+			    <span th:errors="*{carnet}" style="color: #E81505"></span><br><br>
+		
+			    <label>Carrera:</label><br>
+			    <input type="text" th:field="*{carrera}" placeholder=" "> <br>
+			    <span th:errors="*{carrera}" style="color: #E81505"></span><br><br>
+				
+				<div class="buttom-container">
+					<input class="add-buttom" type="submit"  value="Agregar">
+			    </div>
+			</form>
+			
+			<br/>
+				<div class="buttom-container">
+					<a th:href="@{/listado}">
+						<input class="back-buttom" type="submit"  value="Listado de estudiantes" >
+					</a>
+			 	</div>
+		</div>
+	</body>
+</html>

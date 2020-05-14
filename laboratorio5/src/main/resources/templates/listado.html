@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="table-container" align="center">
+		<h1>Listado</h1>
+		<br/>
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Carnet</th>
+					<th>Carrera</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="estudiante, row:${estudiantes}">
+					<td th:text="${estudiante.nombre}">Nombre</td>
+					<td th:text="${estudiante.apellido}">Apellido</td>
+					<td th:text="${estudiante.carnet}">Carnet</td>
+					<td th:text="${estudiante.carrera}">Carrera</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+				<div class="buttom-container">
+					<a th:href="@{/inicio}">
+						<input class="back-buttom" type="submit"  value="Regresar" >
+					</a>
+			   </div>
+	</div>	
+
+</body>
+</html>
