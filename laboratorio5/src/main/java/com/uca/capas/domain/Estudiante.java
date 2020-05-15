@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,55 +20,54 @@ public class Estudiante {
 	private Integer codigoEstudiante;
 	
 	@Column(name="nombre")
-	@Size(min=1, max=5, message = "El campo Nombre debe tener mínimo 1 y máximo de 30 caracteres")
-	private String Nombre;
+	@Size(message="El nombre no debe tener mas de 20 caracteres", max = 20)
+	@NotEmpty(message="Este campo no puede estar vacío") 
+	private String nombre;
 	
-	@Size(min=1, max=5, message = "El campo Apellido debe tener mínimo 1 y máximo de 30 caracteres")
 	@Column(name="apellido")
-	private String Apellido;
+	@Size(message="El apellido no debe tener mas de 20 caracteres", max = 20)
+	@NotEmpty(message="Este campo no puede estar vacío") 
+	private String apellido;
 	
-	@Size(min=8, max=8, message = "El campo Carnet debe tener exactamente 8 digitos")
 	@Column(name="carne")
-	private String Carnet;
+	@Size(message="El carnet debe tener 8 digitos", min=8, max=8)
+	private String carnet;
 	
-	@Size(min=1, max=5, message = "El campo Carrera debe tener mínimo 1 y máximo de 30 caracteres")
 	@Column(name="carrera")
-	private String Carrera;
+	@Size(message="EL nombre de la carrera no debe tener mas de 30 caracteres", max = 30)
+	@NotEmpty(message="El campo no puede estar vacío") 
+	private String carrera;
+	  
 	
-	public Estudiante() {
-		
-	}
 	public Integer getCodigoEstudiante() {
 		return codigoEstudiante;
 	}
 	public void setCodigoEstudiante(Integer codigoEstudiante) {
 		this.codigoEstudiante = codigoEstudiante;
 	}
+	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	public String getApellido() {
-		return Apellido;
+		return apellido;
 	}
 	public void setApellido(String apellido) {
-		Apellido = apellido;
+		this.apellido = apellido;
 	}
 	public String getCarnet() {
-		return Carnet;
+		return carnet;
 	}
 	public void setCarnet(String carnet) {
-		Carnet = carnet;
+		this.carnet = carnet;
 	}
 	public String getCarrera() {
-		return Carrera;
+		return carrera;
 	}
 	public void setCarrera(String carrera) {
-		Carrera = carrera;
+		this.carrera = carrera;
 	}
-	
-	
-	
 }

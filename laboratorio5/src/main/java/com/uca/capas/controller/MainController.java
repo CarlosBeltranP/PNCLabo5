@@ -15,24 +15,45 @@ import org.springframework.web.servlet.ModelAndView;
 import com.uca.capas.dao.EstudianteDAO;
 import com.uca.capas.domain.Estudiante;
 
-
-
 @Controller
 public class MainController {
 	Logger log = Logger.getLogger(MainController.class.getName());
+	
 	@Autowired
 	private EstudianteDAO estudianteDAO;
 	
-	@RequestMapping("/inicio")
-	public ModelAndView initMain() {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping("/inicio")	
+	public ModelAndView initMain() {	
 		Estudiante estudiante = new Estudiante();
+		
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("estudiante", estudiante);
 		mav.setViewName("index");
 		return mav;
-		
 	}
 	
+
+	@RequestMapping("/guardar")
+	public ModelAndView formEstudiante(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		List<Estudiante> estudiantes =null;
+		if(result.hasErrors()) { 
+			mav.setViewName("index");
+			log.info("Error encontrado");
+		}else {	
+			try {
+				log.info("Estudiante agregado");
+				estudianteDAO.save(estudiante, 1);
+			}catch(Exception ex) {
+			}
+			estudiantes=estudianteDAO.findAll();
+			mav.addObject("estudiantes",estudiantes);
+			mav.setViewName("index");
+			}
+			return mav;
+	}
+
+		
 	@RequestMapping("/listado")
 	public ModelAndView listado() {
 		ModelAndView mav = new ModelAndView();
@@ -48,26 +69,4 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping("/guardar")
-	public ModelAndView guardar(@Valid @ModelAttribute Estudiante e, BindingResult result) {
-		ModelAndView mav = new ModelAndView();
-		List<Estudiante> estudiantes =null;
-		if(result.hasErrors()) {
-			mav.setViewName("index");
-			log.info("Error encontrado");
-		}else {
-		try {
-			log.info("Agrego un nuevo usuario");
-			estudianteDAO.save(e, 1);
-		}catch(Exception ex) {
-			log.info("Error: "+ex.toString());
-		}
-		estudiantes=estudianteDAO.findAll();
-		mav.addObject("estudiantes",estudiantes);
-		mav.setViewName("listado");
-		}
-		return mav;
-		
-	}
 }
-

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th=http://www.thymeleaf.org>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Listado</title>
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -28,11 +28,11 @@
 			</tbody>
 		</table>
 		<br>
-				<div class="buttom-container">
-					<a th:href="@{/inicio}">
-						<input class="back-buttom" type="submit"  value="Regresar" >
-					</a>
-			   </div>
+		<div class="buttom-container">
+			<a th:href="@{/inicio}">
+				<input class="back-buttom" type="submit"  value="Regresar" >
+			</a>
+		</div>
 	</div>	
 
 </body>
