@@ -32,9 +32,9 @@ public class MainController {
 		return mav;
 	}
 	
-
+	//********* Guardar estudiante en la base de datos *********
 	@RequestMapping("/guardar")
-	public ModelAndView formEstudiante(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
+	public ModelAndView guardar(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		List<Estudiante> estudiantes =null;
 		if(result.hasErrors()) { 
@@ -43,17 +43,16 @@ public class MainController {
 		}else {	
 			try {
 				log.info("Estudiante agregado");
-				estudianteDAO.save(estudiante, 1);
+				estudianteDAO.save(estudiante, 1); //1 = nueva instancia
 			}catch(Exception ex) {
+				log.info("No se pudo agregar");
 			}
-			estudiantes=estudianteDAO.findAll();
-			mav.addObject("estudiantes",estudiantes);
 			mav.setViewName("index");
-			}
-			return mav;
+		}
+		return mav;
 	}
 
-		
+	//********* Ver lista de estudiantes guardados *********
 	@RequestMapping("/listado")
 	public ModelAndView listado() {
 		ModelAndView mav = new ModelAndView();
@@ -62,6 +61,7 @@ public class MainController {
 			estudiantes = estudianteDAO.findAll();
 		}
 		catch(Exception e) {
+			log.info("Error encontrado");
 			e.printStackTrace();
 		}
 		mav.addObject("estudiantes", estudiantes);

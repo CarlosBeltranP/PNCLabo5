@@ -9,9 +9,9 @@ import com.uca.capas.domain.Estudiante;
 public interface EstudianteDAO {
 	public List<Estudiante>findAll() throws DataAccessException;
 
-	public Estudiante findOne(Integer code) throws DataAccessException;
-
 	int save(Estudiante e, Integer newRow) throws DataAccessException;
+	
+	public Estudiante findOne(Integer code) throws DataAccessException;
 	
 	
 }

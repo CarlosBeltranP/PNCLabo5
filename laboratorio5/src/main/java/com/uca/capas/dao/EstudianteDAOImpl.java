@@ -19,6 +19,14 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 	private EntityManager entityManager;
 	
 	@Override
+	public Estudiante findOne(Integer code) throws DataAccessException {
+		// TODO Auto-generated method stub
+		Estudiante estudiante = entityManager.find(Estudiante.class,  code);
+		return estudiante;
+	}
+	
+	//Ver todos los estudiantes
+	@Override
 	public List<Estudiante> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer();
@@ -28,13 +36,7 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 		return resulset;
 	}
 
-	@Override
-	public Estudiante findOne(Integer code) throws DataAccessException {
-		// TODO Auto-generated method stub
-		Estudiante estudiante = entityManager.find(Estudiante.class,  code);
-		return estudiante;
-	}
-	
+	//Guardar nuevo estudiante
 	@Override
 	@Transactional
 	public int save(Estudiante e, Integer newRow) throws DataAccessException {
@@ -42,7 +44,7 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 			if(newRow ==1) { entityManager.persist(e);
 			}
 			else entityManager.merge(e);
-			entityManager.flush();
+			entityManager.flush(); //sincronizo con la base
 			return 1;
 		}
 		catch(Throwable t ) {

@@ -37,7 +37,11 @@ public class Estudiante {
 	@Size(message="EL nombre de la carrera no debe tener mas de 30 caracteres", max = 30)
 	@NotEmpty(message="El campo no puede estar vacío") 
 	private String carrera;
-	  
+	 
+	//Constructor vacío
+	public Estudiante() {
+		
+	}
 	
 	public Integer getCodigoEstudiante() {
 		return codigoEstudiante;
