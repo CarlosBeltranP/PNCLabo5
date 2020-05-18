@@ -19,7 +19,7 @@ import com.uca.capas.domain.Estudiante;
 public class MainController {
 	Logger log = Logger.getLogger(MainController.class.getName());
 	
-	@Autowired
+	@Autowired //inyectamos objeto
 	private EstudianteDAO estudianteDAO;
 	
 	@RequestMapping("/inicio")	
