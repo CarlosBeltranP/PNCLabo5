@@ -12,6 +12,8 @@ public interface EstudianteDAO {
 	int save(Estudiante e, Integer newRow) throws DataAccessException;
 	
 	public Estudiante findOne(Integer code) throws DataAccessException;
+
+	int delete(Estudiante e) throws DataAccessException;
 	
 	
 }

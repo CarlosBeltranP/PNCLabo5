@@ -25,7 +25,6 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 		return estudiante;
 	}
 	
-	//Ver todos los estudiantes
 	@Override
 	public List<Estudiante> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -36,7 +35,6 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 		return resulset;
 	}
 
-	//Guardar nuevo estudiante
 	@Override
 	@Transactional
 	public int save(Estudiante e, Integer newRow) throws DataAccessException {
@@ -52,6 +50,18 @@ public class EstudianteDAOImpl implements EstudianteDAO {
 			return 1;
 		}
 	}
-
+	//Eliminar estudiante
+	@Override
+	@Transactional
+	public int delete(Estudiante e) throws DataAccessException {
+		try {
+			entityManager.remove(entityManager.contains(e) ? e : entityManager.merge(e));
+			entityManager.flush();	
+			return 1;
+		}catch(Throwable ex) {
+			ex.printStackTrace();
+			return 1;
+		}
+	}
 
 }

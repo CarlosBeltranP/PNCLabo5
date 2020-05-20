@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,4 +70,20 @@ public class MainController {
 		return mav;
 	}
 	
+	//********* Elimina studiante por código*********
+	@RequestMapping(value = "/eliminar/{codigoEstudiante}")
+	public ModelAndView eliminar(@PathVariable int codigoEstudiante) {
+		ModelAndView mav = new ModelAndView();
+		Estudiante e = null;
+		try {
+			e = estudianteDAO.findOne(codigoEstudiante);
+			estudianteDAO.delete(e);
+			log.info("Estudiante eliminado");
+		}catch(Exception ex){
+			log.info("Error:" + ex.toString());
+		}	
+		mav.setViewName("redirect:/listado");
+		return mav;
+	}
 }
+

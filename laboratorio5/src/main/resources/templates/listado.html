@@ -16,6 +16,7 @@
 					<th>Apellido</th>
 					<th>Carnet</th>
 					<th>Carrera</th>
+					<th>Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,13 +25,19 @@
 					<td th:text="${estudiante.apellido}">Apellido</td>
 					<td th:text="${estudiante.carnet}">Carnet</td>
 					<td th:text="${estudiante.carrera}">Carrera</td>
+					<td>
+						<a th:href="@{/eliminar/} + ${estudiante.codigoEstudiante}">
+							<input class="delete-buttom" type="submit"  value="Eliminar" >
+						</a>
+						
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		<br>
 		<div class="buttom-container">
 			<a th:href="@{/inicio}">
-				<input class="back-buttom" type="submit"  value="Regresar" >
+				<input class="back-buttom" type="submit"  value="Agregar estudiante" >
 			</a>
 		</div>
 	</div>	

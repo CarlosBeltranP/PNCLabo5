@@ -199,3 +199,11 @@ table th {
     border-bottom: 0;
   }
 }
+
+.delete-buttom{
+	padding:8px 15px 8px 15px;
+	border : 0;
+	background-color: #DC0D00;
+	color: #FFFFFF;
+	cursor: pointer;
+}
